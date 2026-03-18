@@ -1,11 +1,7 @@
 <p align="center">
-  <img src="assets/logo.png" width="180"/>
+  <img src="assets/logo.png" width="100%"/>
 </p>
 
-<h1 align="center">🧠 Fingerprinter</h1>
-<p align="center">
-  Browser Fingerprinting & Snapshot Engine
-</p>
 
 # 🧠 Fingerprinter — Browser Fingerprinting & Snapshot Engine
 
