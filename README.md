@@ -1,3 +1,12 @@
+<p align="center">
+  <img src="assets/logo.png" width="180"/>
+</p>
+
+<h1 align="center">🧠 Fingerprinter</h1>
+<p align="center">
+  Browser Fingerprinting & Snapshot Engine
+</p>
+
 # 🧠 Fingerprinter — Browser Fingerprinting & Snapshot Engine
 
 A research-oriented web application designed to demonstrate how modern websites derive **browser fingerprints** using client-side signals.
