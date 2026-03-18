@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Fingerprinter</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0e0e0e;
+    color:white;
+    padding:40px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    margin-top:10px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 20px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:20px;
+    background:#1c1c1c;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Fingerprinter</h1>
+
+<h3>Clone Website Snapshot</h3>
+
+<p>
+Paste a URL below to create a snapshot that will also run the fingerprint collection system.
+</p>
+
+<input id="clone-url" placeholder="https://example.com">
+
+<button onclick="cloneSite()">
+Clone Website
+</button>
+
+<div class="result">
+
+<h3>Status</h3>
+
+<pre id="status">
+Waiting for input
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+async function cloneSite(){
+
+    const url = document.getElementById("clone-url").value
+
+    if(!url){
+        alert("Insert a URL")
+        return
+    }
+
+    document.getElementById("status").textContent =
+        "Cloning website..."
+
+    try{
+
+        const res = await fetch("/api/snapshot",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({url:url})
+        })
+
+        const data = await res.json()
+
+        if(data.ok){
+
+            const link = location.origin + data.url
+
+            document.getElementById("status").textContent =
+`Snapshot created successfully
+
+Snapshot ID: ${data.snapshot}
+
+Open:
+${link}`
+
+        }else{
+
+            document.getElementById("status").textContent =
+                "Error creating snapshot"
+
+        }
+
+    }catch(err){
+
+        document.getElementById("status").textContent =
+            err.toString()
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
